@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} Konfirmasi Hapus - {{ siswa.nama }} {% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white rounded-xl shadow-md p-6 mt-12 border border-red-100">
+    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4">
+        <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+        </svg>
+    </div>
+
+    <h1 class="text-xl font-bold text-center text-slate-900 mb-2">
+        Konfirmasi Hapus Data
+    </h1>
+    
+    <p class="text-sm text-gray-500 text-center mb-6">
+        Apakah Anda yakin ingin menghapus seluruh data dari siswa bernama <span class="font-semibold text-slate-800">"{{ siswa.nama }}"</span>? Tindakan ini tidak dapat dibatalkan.
+    </p>
+
+    <form method="POST" class="flex justify-center space-x-3">
+        {% csrf_token %}
+        
+        <a href="{% url 'siswa_list' %}" 
+           class="px-4 py-2 border border-slate-300 rounded-lg text-slate-700 hover:bg-slate-50 text-sm font-medium transition w-1/2 text-center">
+            Batal
+        </a>
+        
+        <button type="submit" 
+                class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm font-medium transition w-1/2">
+            Ya, Hapus Data
+        </button>
+    </form>
+</div>
+{% endblock %}

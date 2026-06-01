@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h3>Jadwal Kegiatan Belajar By: Dika</h3>
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Mulai</th>
+                        <th>Selesai</th>
+                        <th>Hari</th>
+                        <th>Kegiatan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>06:00</td><td>06:30</td><td>Senin - Minggu</td><td>Piket Bersama</td></tr>
+                    <tr><td>06:30</td><td>07:00</td><td>Selasa - Sabtu</td><td>Stretching Pagi</td></tr>
+                    <tr><td>07:30</td><td>08:00</td><td>Senin - Jumat</td><td>Morning Spirit</td></tr>
+                    <tr><td>08:00</td><td>10:00</td><td rowspan="4">Senin - Sabtu</td><td>Arabiyah Baina Yadaik</td></tr>
+                    <tr><td>10:00</td><td>10:20</td><td>ISTIRAHAT</td></tr>
+                    <tr><td>10:20</td><td>12:00</td><td>Lanjut Pelajaran</td></tr>
+                    <tr><td>20:00</td><td>21:30</td><td>Pelajaran IT</td></tr>
+                    <tr><td>06:30</td><td>10:00</td><td>Minggu</td><td>Jalan-Jalan / Jogging</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

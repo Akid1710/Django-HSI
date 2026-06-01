@@ -1,0 +1,10 @@
+body {
+  font-family: Arial;
+  background: #f5f7fa;
+}
+
+nav a {
+  margin: 0 8px;
+  text-decoration: none;
+  color: blue;
+}

@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Website Santri{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'style2.css' %}">
+</head>
+
+<body>
+<header>
+  <h1>HSI Boarding School</h1>
+  <nav>
+    <a href="{% url 'home' %}">Home</a> |
+    <a href="{% url 'biodata' %}">Biodata</a> |
+    <a href="{% url 'jadwal' %}">Jadwal</a> |
+    <a href="{% url 'galeri' %}">Galeri</a> |
+    <a href="{% url 'feedback' %}">Feedback</a>
+  </nav>
+</header>
+
+<hr>
+
+<div class="container"> {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

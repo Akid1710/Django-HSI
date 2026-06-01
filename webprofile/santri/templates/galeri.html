@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Galeri Karya{% endblock %}
+
+{% block content %}
+<div class="card box">
+  <h3>ScreenShoot Prestasi</h3>
+  <div class="gallery">
+    <figure>
+      <img src="{% static 'images/Cuplikan layar 2025-10-01 210753.png' %}" alt="Foto 1">
+      <figcaption>Link online pertama ✨<br>
+        <a href="https://kurniawan-family.netlify.app/" class="btn" target="_blank">👉 My Website</a>
+      </figcaption>
+    </figure>
+    <figure>
+      <img src="{% static 'images/Piala.jpg' %}" alt="Piala">
+      <figcaption>Graduation day 🎓<br>Syukur banget, bisa masuk 3 besar 💯</figcaption>
+    </figure>
+    </div>
+</div>
+
+<div class="card box">
+  <h3>Belajar Bahasa Arab</h3>
+  <iframe width="100%" height="400" src="https://youtube.com/embed/clJu2l3nZvw" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class="card box">
+  <h3>Vlog Pertama Saya</h3>
+  <video width="100%" height="400" controls>
+    <source src="{% static 'images/Video Vlog Dika.mp4' %}" type="video/mp4">
+  </video>
+</div>
+{% endblock %}
