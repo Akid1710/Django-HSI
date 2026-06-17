@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">Dashboard Utama</h1>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-xs relative overflow-hidden">
+        <p class="text-xs font-semibold text-gray-400">Total Buku</p>
+        <h3 class="text-2xl font-bold text-gray-800 mt-1">{{ total_buku }}</h3>
+        <p class="text-2xs text-gray-400 mt-1">Keseluruhan unit buku tersedia.</p>
+        <span class="absolute top-4 right-4 text-blue-500 text-lg">📖</span>
+    </div>
+    <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-xs relative overflow-hidden">
+        <p class="text-xs font-semibold text-gray-400">Total Judul</p>
+        <h3 class="text-2xl font-bold text-gray-800 mt-1">{{ total_judul }}</h3>
+        <p class="text-2xs text-gray-400 mt-1">Jumlah koleksi judul buku.</p>
+        <span class="absolute top-4 right-4 text-blue-500 text-lg">📄</span>
+    </div>
+    <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-xs relative overflow-hidden">
+        <p class="text-xs font-semibold text-gray-400">Sedang Dipinjam</p>
+        <h3 class="text-2xl font-bold text-gray-800 mt-1">{{ sedang_dipinjam }}</h3>
+        <p class="text-2xs text-gray-400 mt-1">Transaksi peminjaman aktif.</p>
+        <span class="absolute top-4 right-4 text-amber-500 text-lg">⏳</span>
+    </div>
+    <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-xs relative overflow-hidden">
+        <p class="text-xs font-semibold text-gray-400">Sudah Dikembalikan</p>
+        <h3 class="text-2xl font-bold text-gray-800 mt-1">{{ sudah_dikembalikan }}</h3>
+        <p class="text-2xs text-gray-400 mt-1">Transaksi yang sudah selesai.</p>
+        <span class="absolute top-4 right-4 text-emerald-500 text-lg">✅</span>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    
+    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-xs">
+        <div class="mb-4">
+            <p class="text-2xs font-semibold text-gray-400 uppercase tracking-wider">Analisis Stok</p>
+            <h2 class="text-base font-bold text-gray-800">Distribusi Stok Buku</h2>
+        </div>
+        <div class="space-y-4">
+            {% for b in daftar_buku %}
+            <div>
+                <div class="flex justify-between text-xs font-medium text-gray-600 mb-1">
+                    <span class="truncate max-w-[80%]">{{ b.judul }}</span>
+                    <span class="font-bold text-blue-600">{{ b.stok }}</span>
+                </div>
+                <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                    <div class="bg-blue-600 h-full rounded-full" style="width: calc(({{ b.stok }} / 15) * 100%); max-width: 100%;"></div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-xs text-gray-400 py-4 text-center">Belum ada data buku.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-xs">
+        <div class="mb-4">
+            <p class="text-2xs font-semibold text-gray-400 uppercase tracking-wider">Status Peminjaman</p>
+            <h2 class="text-base font-bold text-gray-800">Ringkasan Transaksi</h2>
+        </div>
+        <div class="space-y-4">
+            <div>
+                <div class="flex justify-between text-xs font-medium text-gray-600 mb-1">
+                    <span>Sedang Dipinjam</span>
+                    <span class="font-bold text-amber-500">{{ sedang_dipinjam }}</span>
+                </div>
+                <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                    <div class="bg-amber-500 h-full rounded-full" style="width: calc(({{ sedang_dipinjam }} / 10) * 100%); max-width: 100%;"></div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="flex justify-between text-xs font-medium text-gray-600 mb-1">
+                    <span>Sudah Dikembalikan</span>
+                    <span class="font-bold text-emerald-500">{{ sudah_dikembalikan }}</span>
+                </div>
+                <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                    <div class="bg-emerald-500 h-full rounded-full" style="width: calc(({{ sudah_dikembalikan }} / 10) * 100%); max-width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="mb-6 flex items-center gap-3">
+    <a href="{% url 'list_buku' %}" class="text-gray-400 hover:text-gray-600 text-xl font-bold transition">←</a>
+    <div>
+        <p class="text-xs text-gray-400 font-medium">Kelola Buku</p>
+        <h1 class="text-2xl font-bold text-gray-800">Detail Buku</h1>
+    </div>
+</div>
+
+<div class="max-w-4xl space-y-5">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 shadow-xs">
+            <p class="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-1">Judul</p>
+            <p class="text-sm font-bold text-gray-800">{{ buku.judul }}</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 shadow-xs">
+            <p class="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-1">Pengarang</p>
+            <p class="text-sm font-bold text-gray-800">{{ buku.pengarang }}</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 shadow-xs">
+            <p class="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-1">Kategori</p>
+            <p class="text-sm font-bold text-gray-800">{{ buku.kategori }}</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 shadow-xs">
+            <p class="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-1">Penerbit</p>
+            <p class="text-sm font-bold text-gray-800">{{ buku.penerbit }}</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 shadow-xs">
+            <p class="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-1">Tahun Terbit</p>
+            <p class="text-sm font-bold text-gray-800">{{ buku.tahun_terbit }}</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 shadow-xs">
+            <p class="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-1">ISBN</p>
+            <p class="text-sm font-mono font-bold text-gray-800">{{ buku.isbn|default:'-' }}</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 shadow-xs">
+            <p class="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-1">Rak / Lokasi</p>
+            <p class="text-sm font-medium text-gray-800">{{ buku.rak }}</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-gray-100 p-5 shadow-xs">
+            <p class="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-1">Stok</p>
+            <p class="text-sm font-bold text-gray-800">{{ buku.stok }}</p>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-xsw-full">
+        <p class="text-2xs font-bold text-gray-400 uppercase tracking-wider mb-2">Deskripsi</p>
+        <p class="text-sm text-gray-600 leading-relaxed font-medium">{{ buku.deskripsi|default:'Tidak ada deskripsi.' }}</p>
+    </div>
+
+</div>
+{% endblock %}

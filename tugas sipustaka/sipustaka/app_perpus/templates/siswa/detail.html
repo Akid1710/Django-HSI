@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPUSTAKA - Detail User</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 font-sans">
+    <div class="flex min-h-screen">
+        <div class="w-64 bg-slate-950 text-white p-6 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center space-x-3 mb-10">
+                    <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-bold text-lg">P</div>
+                    <div>
+                        <h1 class="text-xs font-bold tracking-wider text-slate-400">SIPUSTAKA</h1>
+                        <p class="text-xs text-slate-500">Sistem Peminjaman Buku</p>
+                    </div>
+                </div>
+                <nav class="space-y-2 text-sm">
+                    <a href="#" class="block py-2.5 px-4 rounded-xl text-slate-400 hover:bg-slate-900">Dashboard</a>
+                    <a href="#" class="block py-2.5 px-4 rounded-xl text-slate-400 hover:bg-slate-900">Buku</a>
+                    <a href="/peminjaman/" class="block py-2.5 px-4 rounded-xl text-slate-400 hover:bg-slate-900">Peminjaman</a>
+                    <a href="/siswa/" class="block py-2.5 px-4 rounded-xl bg-blue-600 text-white font-medium">User</a>
+                </nav>
+            </div>
+            <div class="text-xs text-slate-500">
+                <p>Admin Aktif</p>
+                <p class="font-bold text-slate-300">Jang Sooha</p>
+            </div>
+        </div>
+
+        <div class="flex-1 p-10">
+            <div class="flex items-center space-x-2 text-xs text-slate-400 mb-2">
+                <span>Kelola User</span>
+                <span>/</span>
+                <span class="text-slate-600">Detail</span>
+            </div>
+
+            <div class="flex items-center space-x-4 mb-8">
+                <a href="/siswa/" class="p-2 hover:bg-slate-200 rounded-xl transition border border-transparent hover:border-slate-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 text-slate-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                    </svg>
+                </a>
+                <h2 class="text-2xl font-bold text-slate-800">Detail User</h2>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow-sm max-w-3xl border border-slate-100">
+                <div class="space-y-6">
+                    <div class="border-b border-slate-50 pb-4">
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1 tracking-wider">Nama Lengkap</label>
+                        <p class="text-base font-semibold text-slate-800">{{ siswa.nama }}</p>
+                    </div>
+
+                    <div class="border-b border-slate-50 pb-4">
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1 tracking-wider">Kelas</label>
+                        <p class="text-base text-slate-700">{{ siswa.kelas }}</p>
+                    </div>
+
+                    <div class="border-b border-slate-50 pb-4">
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1 tracking-wider">Nomor Induk Siswa (NIS)</label>
+                        <p class="text-base font-mono text-slate-700">{{ siswa.nis }}</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">Status Akun</label>
+                        <div>
+                            <span class="px-3 py-1 bg-green-50 text-green-600 rounded-full text-xs font-bold border border-green-100">
+                                {{ siswa.status }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-3 border-t border-slate-100 mt-8 pt-6">
+                    <a href="/siswa/" class="px-5 py-2.5 border border-slate-200 text-slate-600 rounded-xl text-sm font-semibold hover:bg-slate-50 transition">
+                        Kembali
+                    </a>
+                    <a href="/siswa/edit/{{ siswa.id }}/" class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-semibold hover:bg-blue-700 shadow-sm shadow-blue-200 transition">
+                        Edit Data
+                    </a>
+                </div>
+            </div>
+            </div>
+    </div>
+</body>
+</html>

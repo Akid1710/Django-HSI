@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">Tambah Buku Baru</h1>
+</div>
+<div class="bg-white rounded-2xl border border-gray-100 p-8 max-w-2xl shadow-xs">
+    <form method="POST" class="space-y-5">
+        {% csrf_token %}
+        <div class="grid grid-cols-2 gap-4">
+            <div class="col-span-2">
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Judul Buku</label>
+                <input type="text" name="judul" required class="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-blue-500">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Pengarang</label>
+                <input type="text" name="pengarang" required class="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-blue-500">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Kategori</label>
+                <select name="kategori" class="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-blue-500">
+                    <option value="Novel">Novel</option>
+                    <option value="Sejarah">Sejarah</option>
+                    <option value="Pendidikan">Pendidikan</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Penerbit</label>
+                <input type="text" name="penerbit" required class="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-blue-500">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Tahun Terbit</label>
+                <input type="number" name="tahun_terbit" required class="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-blue-500">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Lokasi Rak</label>
+                <select name="rak" class="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-blue-500">
+                    <option value="Rak A-01">Rak A-01</option>
+                    <option value="Rak A-02">Rak A-02</option>
+                    <option value="Rak A-03">Rak A-03</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2">ISBN</label>
+                <input type="text" name="isbn" required placeholder="Contoh: 978-979-3062-79-2" class="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-blue-500">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Jumlah Stok</label>
+                <input type="number" name="stok" required class="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-blue-500">
+            </div>
+            <div class="col-span-2">
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Deskripsi Buku</label>
+                <textarea name="deskripsi" rows="3" class="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-blue-500"></textarea>
+            </div>
+        </div>
+        <div class="flex justify-end gap-3 pt-4 border-t border-gray-50">
+            <a href="{% url 'list_buku' %}" class="px-5 py-2.5 rounded-xl text-sm border border-gray-200 text-gray-500">Batal</a>
+            <button type="submit" class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-semibold">Simpan Buku</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

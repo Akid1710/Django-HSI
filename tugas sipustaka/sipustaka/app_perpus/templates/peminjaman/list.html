@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <div>
+        <p class="text-xs text-gray-400 font-medium">Catat peminjaman dan pengembalian buku.</p>
+        <h1 class="text-2xl font-bold text-gray-800 mt-0.5">Peminjaman</h1>
+    </div>
+    <a href="{% url 'tambah_peminjaman' %}" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition shadow-sm flex items-center gap-2">
+        <span class="text-lg">+</span> Pinjam Buku
+    </a>
+</div>
+
+<div class="bg-white rounded-2xl border border-gray-100 shadow-xs overflow-hidden">
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="border-b border-gray-50 text-2xs font-bold text-gray-400 uppercase tracking-wider bg-gray-50/50">
+                    <th class="py-4 px-6 w-16">ID</th>
+                    <th class="py-4 px-4">Nama Peminjam</th>
+                    <th class="py-4 px-4">Buku</th>
+                    <th class="py-4 px-4">Tanggal Pinjam</th>
+                    <th class="py-4 px-4">Jatuh Tempo</th>
+                    <th class="py-4 px-4">Keperluan</th>
+                    <th class="py-4 px-4">Petugas</th>
+                    <th class="py-4 px-4 text-center">Status</th>
+                    <th class="py-4 px-6 text-center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-50 text-sm text-gray-700">
+                {% for p in peminjaman_list %}
+                <tr class="hover:bg-gray-50/50 transition">
+                    <td class="py-4 px-6 font-medium text-gray-400">{{ forloop.counter }}</td>
+                    <td class="py-4 px-4 font-bold text-gray-900">{{ p.nama_siswa }}</td>
+                    <td class="py-4 px-4 text-gray-600 font-medium">{{ p.judul_buku }}</td>
+                    <td class="py-4 px-4 text-gray-500 font-mono text-xs">{{ p.tgl_pinjam|date:"d M Y" }}</td>
+                    <td class="py-4 px-4 text-gray-500 font-mono text-xs">{{ p.tgl_kembali|date:"d M Y" }}</td>
+                    <td class="py-4 px-4 text-gray-400 italic text-xs">{{ p.keperluan }}</td>
+                    <td class="py-4 px-4 text-gray-500 font-medium">{{ p.petugas }}</td>
+                    <td class="py-4 px-4 text-center">
+                        {% if p.status == 'Dipinjam' %}
+                        <span class="bg-amber-50 text-amber-600 px-2.5 py-1 rounded-md text-2xs font-bold uppercase tracking-wider">Dipinjam</span>
+                        {% else %}
+                        <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-md text-2xs font-bold uppercase tracking-wider">Dikembalikan</span>
+                        {% endif %}
+                    </td>
+                    <td class="py-4 px-6 text-center">
+                        {% if p.status == 'Dipinjam' %}
+                        <a href="/peminjaman/kembalikan/{{ p.id }}/" class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition shadow-sm">
+                            Kembalikan
+                        </a>
+                        {% else %}
+                        <span class="text-gray-300 text-xs font-medium italic">Selesai Transaksi</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="9" class="py-12 text-center text-sm text-gray-400 font-medium">Belum ada transaksi peminjaman hari ini.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

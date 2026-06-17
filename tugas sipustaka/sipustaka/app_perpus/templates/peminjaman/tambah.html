@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="mb-6">
+    <p class="text-xs text-gray-400 font-medium">Peminjaman Buku</p>
+    <h1 class="text-2xl font-bold text-gray-800">Pinjam Buku</h1>
+</div>
+
+<div class="bg-white rounded-2xl border border-gray-100 p-8 max-w-4xl shadow-xs">
+    <form method="POST" class="space-y-6">
+        {% csrf_token %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-wider">Nama Peminjam</label>
+                <select name="id_siswa" required class="w-full border border-gray-200 rounded-xl p-3 text-sm font-medium text-gray-800 bg-gray-50/30 focus:bg-white focus:outline-blue-500 transition">
+                    <option value="" disabled selected>Pilih Anggota...</option>
+                    {% for s in siswa_list %}
+                    <option value="{{ s.id }}">{{ s.nama }} - {{ s.nis }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-wider">Pilih Buku</label>
+                <select name="id_buku" required class="w-full border border-gray-200 rounded-xl p-3 text-sm font-medium text-gray-800 bg-gray-50/30 focus:bg-white focus:outline-blue-500 transition">
+                    <option value="" disabled selected>Cari Buku...</option>
+                    {% for b in buku_list %}
+                    <option value="{{ b.id }}">{{ b.judul }} ({{ b.stok }} stok)</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-wider">Tanggal Pinjam</label>
+                <input type="date" name="tgl_pinjam" value="2026-06-03" required class="w-full border border-gray-200 rounded-xl p-3 text-sm font-medium text-gray-800 bg-gray-50/30 focus:bg-white focus:outline-blue-500 transition">
+            </div>
+            
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-wider">Tanggal Jatuh Tempo</label>
+                <input type="date" name="tgl_kembali" value="2026-06-10" required class="w-full border border-gray-200 rounded-xl p-3 text-sm font-medium text-gray-800 bg-gray-50/30 focus:bg-white focus:outline-blue-500 transition">
+            </div>
+            
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-wider">Keperluan</label>
+                <select name="keperluan" class="w-full border border-gray-200 rounded-xl p-3 text-sm font-medium text-gray-800 bg-gray-50/30 focus:bg-white focus:outline-blue-500 transition">
+                    <option value="Bacaan pribadi">Bacaan pribadi</option>
+                    <option value="Tugas sekolah">Tugas sekolah</option>
+                    <option value="Penelitian">Penelitian</option>
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-wider">Petugas</label>
+                <input type="text" value="Jang Soo-Ha" readonly class="w-full border border-gray-100 rounded-xl p-3 text-sm font-bold text-gray-400 bg-gray-50 cursor-not-allowed">
+            </div>
+            
+            <div class="md:col-span-2">
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-wider">Catatan</label>
+                <textarea name="catatan" rows="4" placeholder="Contoh: buku untuk tugas Bahasa Indonesia" class="w-full border border-gray-200 rounded-xl p-3 text-sm font-medium text-gray-800 bg-gray-50/30 focus:bg-white focus:outline-blue-500 transition"></textarea>
+            </div>
+        </div>
+        
+        <div class="flex justify-end gap-3 pt-5 border-t border-gray-50">
+            <a href="{% url 'list_peminjaman' %}" class="px-6 py-2.5 rounded-xl text-sm border border-gray-200 text-gray-500 font-medium hover:bg-gray-50 transition">Batal</a>
+            <button type="submit" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold shadow-sm transition">Pinjam Buku</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
